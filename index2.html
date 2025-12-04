@@ -783,6 +783,80 @@
   </style>
 </head>
 <body>
+  <!-- Welcome Splash Screen -->
+  <div class="splash-screen" id="splashScreen" onclick="enterSite()">
+    <div class="splash-content">
+      <div class="splash-emoji">🎂</div>
+      <h2>શ્રેયાંશ નો પ્રથમ જન્મદિવસ</h2>
+      <p>🎈 Click to Enter 🎈</p>
+      <div class="splash-hint">🔊 Music will play</div>
+    </div>
+  </div>
+
+  <style>
+    .splash-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a2e, #e85d75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    .splash-content {
+      text-align: center;
+      color: white;
+      animation: splashBounce 1s ease-in-out infinite;
+    }
+
+    @keyframes splashBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .splash-emoji {
+      font-size: 120px;
+      margin-bottom: 20px;
+      animation: splashRotate 3s ease-in-out infinite;
+    }
+
+    @keyframes splashRotate {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.1); }
+    }
+
+    .splash-content h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+    }
+
+    .splash-content p {
+      font-size: 24px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .splash-hint {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .splash-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+
   <!-- Animated Background -->
   <div class="background-animation"></div>
 
@@ -981,6 +1055,85 @@
 
     // Add touch interaction for mobile
     document.querySelector('.photo-circle').addEventListener('click', triggerCelebration);
+  </script>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop autoplay>
+    <source src="birthday.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Music Toggle Button -->
+  <button class="music-toggle" onclick="toggleMusic()" title="Toggle Music">🔊</button>
+
+  <style>
+    .music-toggle {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      box-shadow: 0 10px 30px rgba(232, 93, 117, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      animation: musicPulse 0.5s ease-in-out infinite;
+    }
+
+    .music-toggle:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .music-toggle.paused {
+      animation: musicPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 10px 30px rgba(232, 93, 117, 0.4); transform: scale(1); }
+      50% { box-shadow: 0 10px 50px rgba(232, 93, 117, 0.8); transform: scale(1.05); }
+    }
+  </style>
+
+  <script>
+    // Background Music
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.querySelector('.music-toggle');
+    let isPlaying = true;
+
+    // Autoplay on page load
+    music.volume = 0.5;
+    music.play().then(() => {
+      isPlaying = true;
+      musicBtn.textContent = '🔊';
+    }).catch(e => {
+      isPlaying = false;
+      musicBtn.textContent = '🎵';
+      musicBtn.classList.add('paused');
+    });
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        musicBtn.textContent = '🎵';
+        musicBtn.classList.add('paused');
+      } else {
+        music.play();
+        musicBtn.textContent = '🔊';
+        musicBtn.classList.remove('paused');
+      }
+      isPlaying = !isPlaying;
+    }
+
+    function enterSite() {
+      document.getElementById('splashScreen').classList.add('hidden');
+      music.play().then(() => {
+        isPlaying = true;
+        musicBtn.textContent = '🔊';
+      }).catch(e => console.log('Audio error:', e));
+    }
   </script>
 </body>
 </html>
