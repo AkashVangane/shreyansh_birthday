@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Birthday Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      /* Color Palette: Soft, celebratory, and elegant */
+      --color-primary: #8a3324; /* Deep Burgundy/Red for emphasis */
+      --color-secondary: #f4d4a8; /* Soft Cream/Gold for accents */
+      --color-text-dark: #3a221f; /* Dark Brown for main text */
+      --color-text-light: #5e3b39; /* Muted Brown for secondary text */
+      --glass-bg: rgba(255, 255, 255, 0.15); /* Slightly less transparent */
+      --glass-border: rgba(255, 255, 255, 0.7);
+      --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      --font-fancy: "Noto Sans Gujarati", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Background Image: Ensure '92903.jpg' is a suitable, elegant background */
+      background-image: url('92903.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Fix the background for a nice effect */
+      font-family: var(--font-fancy);
+    }
+
+    .page {
+      padding: 20px;
+      width: 100%;
+      max-width: 850px; /* Slightly wider card */
+    }
+
+    /* Main Glassmorphism Card Style */
+    .card {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px); /* Increased blur */
+      border-radius: 30px;
+      border: 1px solid var(--glass-border); /* Subtle border for definition */
+      box-shadow: var(--glass-shadow);
+      padding: 50px 40px; /* More padding */
+      overflow: hidden;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-inner-border {
+      border-radius: 26px;
+      /* Removing the inner border background to rely on the outer card's glass effect */
+      padding: 0; /* Adjusted padding as it's handled by the outer card now */
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-around;
+      font-size: 14px;
+      color: var(--color-text-light);
+      margin-bottom: 10px;
+      font-weight: 500;
+      padding: 0 10px;
+    }
+
+    .main-title {
+      text-align: center;
+      margin: 15px 0 10px;
+      font-size: 42px; /* Larger title */
+      letter-spacing: 3px;
+      color: var(--color-primary);
+      font-weight: 900;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    .title-divider {
+      width: 150px; /* Longer divider */
+      height: 2px;
+      margin: 0 auto 30px;
+      border-top: 3px solid var(--color-secondary); /* Solid, cream color */
+      border-radius: 2px;
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .photo-circle {
+      width: 200px; /* Larger photo */
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 6px solid var(--color-secondary); /* Thicker, elegant border */
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3); /* Multi-layer shadow */
+    }
+
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 20px; /* Larger intro text */
+      line-height: 1.8;
+      color: var(--color-text-dark);
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+    
+    .intro-text strong {
+      font-weight: 700;
+      color: var(--color-primary); /* Highlight the baby's name */
+      font-size: 1.1em;
+    }
+
+    .event-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px; /* Increased gap */
+      margin: 20px 0 30px;
+      color: var(--color-text-dark);
+      font-weight: 600;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+    }
+
+    .date-big {
+      font-size: 56px; /* Much larger number */
+      font-weight: 900;
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .event-label {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--color-text-light);
+    }
+    
+    .event-label span:last-child {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-text-dark);
+    }
+
+
+    .section-heading {
+      text-align: center;
+      font-size: 24px; /* Larger section heading */
+      font-weight: 700;
+      color: var(--color-primary);
+      margin: 18px 0 8px;
+      letter-spacing: 1px;
+    }
+
+    .section-divider {
+      width: 100px;
+      height: 1px;
+      margin: 0 auto 15px;
+      border-top: 2px solid var(--color-secondary);
+      border-radius: 1px;
+    }
+
+    .names-grid {
+      display: grid;
+      /* 3 columns on desktop, 2 on small desktop/tablet */
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 12px 30px;
+      font-size: 16px;
+      color: var(--color-text-dark);
+      margin-bottom: 25px;
+      padding: 0 10px;
+    }
+
+    .names-grid p {
+      line-height: 1.5;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .venue-box {
+      margin-top: 10px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2); /* Lighter glass for venue */
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text-dark);
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .venue-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      font-size: 18px;
+      color: var(--color-primary);
+    }
+
+    .footer-row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--color-text-light);
+      padding: 0 10px;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+      .names-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 30px 15px;
+      }
+
+      .main-title {
+        font-size: 32px;
+      }
+
+      .photo-circle {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .intro-text {
+        font-size: 16px;
+      }
+
+      .event-row {
+        flex-direction: column;
+        gap: 12px;
+        padding: 10px;
+      }
+
+      .date-big {
+        font-size: 48px;
+      }
+      
+      .event-label span:last-child {
+        font-size: 20px;
+      }
+      
+      .names-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 8px;
+      }
+      
+      .section-heading {
+        font-size: 20px;
+      }
+      
+      .venue-box {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <div class="card-inner-border">
+        <div class="top-line">
+          <span>શ્રી સોમજઈ પ્રસન્ન</span>
+          <span>શ્રી કુલસ્વામી પ્રસન્ન</span>
+          <span>શ્રી રંગુમાતા પ્રસન્ન</span>
+        </div>
+
+        <h1 class="main-title">પ્રથમ જન્મદિવસ</h1>
+        <div class="title-divider"></div>
+
+        <div class="photo-wrap">
+          <div class="photo-circle">
+            <img src="baby.jpg" alt="શ્રેયાંશ" />
+          </div>
+        </div>
+
+        <p class="intro-text">
+          અમારા સુપુત્ર <strong>શ્રેયાંશ</strong> ના પ્રથમ જન્મદિવસ નિમિત્તે<br />
+          આપ સૌને **સપરિવાર** હાર્દિક ભાવભર્યું આમંત્રણ છે.
+        </p>
+
+        <div class="event-row">
+          <div class="date-big">૮</div>
+          <div class="event-label">
+            <span>મહિનો</span>
+            <span>ડિસેમ્બર</span>
+          </div>
+          <div class="event-label">
+            <span>સમય</span>
+            <span>સાંજે ૭:૦૦ વાગ્યે</span>
+          </div>
+        </div>
+
+        <div class="section-heading">નિમંત્રક</div>
+        <div class="section-divider"></div>
+
+        <div class="names-grid">
+          <p>અક્ષય રાજુભાઈ વાંગણે (પિતા)</p>
+          <p>સપારુલ અક્ષય વાંગણે (માતા)</p>
+          <p>રાજુ હનુમંત વાંગણે (દાદા)</p>
+          <p>રાજેશ્રી રાજુ વાંગણે (દાદી)</p>
+          <p>દિપક પાંડુરંગ ચાંડલેકર (નાના)</p>
+          <p>વંદના દિપક ચાંદલેકર (નાની)</p>
+          <p>આકાશ રાજુભાઈ વાંગણે (કાકા)</p>
+          <p>મહેશ દિપક ચાંદલેકર (મામા)</p>
+          <p>મીના મહેશ ચાંદલેકર (મામી)</p>
+        </div>
+
+        <div class="section-heading">સ્થળ</div>
+        <div class="section-divider"></div>
+
+        <div class="venue-box">
+          <div class="venue-title">સી-૩૦૪, આશીર્વાદ હાઇટ્સ</div>
+		  <div> રજવાડી પાર્ટી પ્લોટ ની આગાડ <br /><div/>
+          <div>
+            સ્વીટ હોમ સોસાયટી સામે, ન્યુ કોસાડ રોડ, સુરત<br />
+            સમય: સાંજે ૭:૦૦ વાગ્યાથી <br />
+            મોબાઇલ: ૯૫૮૬૫૧૭૯૨૭, ૯૪૨૮૩૯૬૭૧૩
+          </div>
+        </div>
+        
+        <div class="footer-row">
+          <span>*આમંત્રણ કાર્ડ તરીકે સ્વીકારશોજી*</span>
+          <span>લિ. સમગ્ર વાંગણે પરિવાર</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

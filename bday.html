@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Birthday Invitation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Use your own background image file here */
+      background-image: url('92903.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: "Noto Sans Gujarati", "Shruti", system-ui, -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .page {
+      padding: 20px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.05); /* cleaner transparent */
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+      padding: 40px 30px 30px;
+      overflow: hidden; /* slightly transparent card */
+      backdrop-filter: blur(4px);
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 40px 30px 30px;
+      overflow: hidden;
+    }
+
+    .card::before,
+    
+
+    .card-inner-border {
+      border-radius: 20px;
+      border: none;
+      padding: 30px 24px 24px;
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.08); /* very light glass */
+      backdrop-filter: blur(4px);
+    }
+
+    .top-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #2d4a4a;
+      margin-bottom: 10px;
+    }
+
+    .top-line span {
+      flex: 1;
+      text-align: center;
+    }
+
+    .top-line span:first-child {
+      text-align: left;
+    }
+
+    .top-line span:last-child {
+      text-align: right;
+    }
+
+    .main-title {
+      text-align: center;
+      margin: 12px 0 8px;
+      font-size: 34px;
+      letter-spacing: 2px;
+      color: #1f3b3b;
+      font-weight: 700;
+    }
+
+    .title-divider {
+      width: 120px;
+      height: 1px;
+      margin: 0 auto 20px;
+      border-top: 2px dashed rgba(57, 121, 158, 0.5);
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .photo-circle {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255,255,255,0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 4px solid rgba(255,255,255,0.6); /* soft white border */
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25); /* elegant glow */
+      backdrop-filter: blur(6px); /* frosted border */
+    }
+
+    .photo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 18px;
+      line-height: 1.7;
+      color: #2d4a4a;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .event-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin: 16px 0 24px;
+      font-size: 18px;
+      color: #2d4a4a;
+      font-weight: 600;
+    }
+
+    .date-big {
+      font-size: 40px;
+      font-weight: 700;
+      color: #2d4a4a;
+    }
+
+    .event-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1f3b3b;
+      margin: 12px 0 8px;
+      letter-spacing: 1px;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 1px;
+      margin: 0 auto 10px;
+      border-top: 2px dotted rgba(40, 104, 136, 0.6);
+    }
+
+    .names-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 24px;
+      font-size: 15px;
+      color: #2d4a4a;
+      margin-bottom: 18px;
+	  grid-template-columns: repeat(2, 1fr);
+    }
+
+    .names-grid p {
+      line-height: 1.4;
+    }
+
+    .venue-box {
+      margin-top: 6px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.18);
+      font-size: 16px;
+      line-height: 1.6;
+      color: #1f3b3b;
+      text-align: center;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2d4a4a;
+      text-align: center;
+    }
+
+    .venue-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #2d4a4a;
+    }
+
+    .footer-row {
+      margin-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #2d4a4a;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 26px 16px 18px;
+      }
+
+      .card-inner-border {
+        padding: 20px 14px 16px;
+      }
+
+      .main-title {
+        font-size: 26px;
+      }
+
+      .intro-text {
+        font-size: 14px;
+      }
+
+      .event-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .date-big {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <div class="card-inner-border">
+        <div class="top-line">
+          <span>શ્રી સોમજઈ પ્રસન્ન </span>
+          <span>શ્રી કુલસ્વામી પ્રસન્ન</span>
+          <span>શ્રી રંગુમાતા પ્રસન્ન</span>
+        </div>
+
+        <h1 class="main-title">આમંત્રણ</h1>
+        <div class="title-divider"></div>
+
+        <div class="photo-wrap">
+          <div class="photo-circle">
+            <img src="baby.jpg" alt="Baby" />
+          </div>
+        </div>
+
+        <p class="intro-text">
+          અમારા સુપુત્ર <strong>શ્રેયાંશ</strong> ના પ્રથમ જન્મદિવસ નિમિત્તે<br />
+          આપ સૌને હાર્દિક ભાવભર્યું આમંત્રણ.
+        </p>
+
+        <div class="event-row">
+          <div class="date-big">૮</div>
+          <div class="event-label">
+            <span>ડિસેમ્બર</span>
+          </div>
+          <div class="event-label">
+            <span>સાંજે ૭:૦૦ વાગ્યે</span>
+          </div>
+        </div>
+
+        <div class="section-heading">નિમંત્રક</div>
+        <div class="section-divider"></div>
+
+        <div class="names-grid">
+          <p>અક્ષય રાજુભાઈ વાંગણે (પિતા)</p>
+          <p>સપારુલ અક્ષય વાંગણે (માતા)</p>
+          <p>રાજુ હનુમંત વાંગણે (દાદા)</p>
+          <p>રાજેશ્રી રાજુ વાંગણે (દાદી)</p>
+		  <p>દિપક પાંડુરંગ ચાંડલેકર (નાના)</p>
+          <p>વંદના દિપક ચાંદલેકર (નાની)</p>
+          <p>આકાશ રાજુભાઈ વાંગણે (કાકા)</p>
+          <p>મહેશ દિપક ચાંદલેકર (મામા)</p>
+          <p>મીના મહેશ ચાંદલેકર (મામી)</p>
+          
+        </div>
+
+        <div class="section-heading">સ્થળ</div>
+        <div class="section-divider"></div>
+
+        <div class="venue-box">
+          <div class="venue-title">સી-૩૦૪, આશીર્વાદ હાઇટ્સ</div>
+          <div>
+            સ્વીટ હોમ સોસાયટી સામે, ન્યુ કોસાડ રોડ, સુરત<br />
+            સમય: સાંજે ૭:૦૦ વાગ્યાથી <br />
+            મોબાઇલ: ૯૫૮૬૫૧૭૯૨૭, ૯૪૨૮૩૯૬૭૧૩
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
