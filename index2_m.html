@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎂 श्रेयांश - पहिला वाढदिवस 🎈</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;700;900&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --color-primary: #e85d75;
+      --color-primary-dark: #c94058;
+      --color-secondary: #ffd93d;
+      --color-accent: #6c5ce7;
+      --color-text-dark: #2d1f3d;
+      --color-text-light: #5e4b6b;
+      --glass-bg: rgba(255, 255, 255, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.5);
+      --font-fancy: "Noto Sans Devanagari", sans-serif;
+      --gradient-magical: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f64f59 100%);
+      --gradient-warm: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      font-family: var(--font-fancy);
+      overflow-x: hidden;
+      position: relative;
+      padding: 40px 0;
+    }
+
+    /* Animated Gradient Background */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .background-animation::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 107, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(255, 217, 61, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 60% 60%, rgba(108, 92, 231, 0.3) 0%, transparent 40%);
+      animation: bgRotate 20s linear infinite;
+    }
+
+    @keyframes bgRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Floating Balloons */
+    .balloons-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      animation: floatUp linear infinite;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    .balloon::before {
+      content: '🎈';
+      font-size: 60px;
+      display: block;
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    .balloon:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; }
+    .balloon:nth-child(2) { left: 15%; animation-duration: 14s; animation-delay: 2s; }
+    .balloon:nth-child(3) { left: 25%; animation-duration: 11s; animation-delay: 4s; }
+    .balloon:nth-child(4) { left: 35%; animation-duration: 15s; animation-delay: 1s; }
+    .balloon:nth-child(5) { left: 45%; animation-duration: 13s; animation-delay: 3s; }
+    .balloon:nth-child(6) { left: 55%; animation-duration: 12s; animation-delay: 5s; }
+    .balloon:nth-child(7) { left: 65%; animation-duration: 14s; animation-delay: 2.5s; }
+    .balloon:nth-child(8) { left: 75%; animation-duration: 11s; animation-delay: 4.5s; }
+    .balloon:nth-child(9) { left: 85%; animation-duration: 13s; animation-delay: 1.5s; }
+    .balloon:nth-child(10) { left: 95%; animation-duration: 15s; animation-delay: 3.5s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(10deg); opacity: 0; }
+    }
+
+    @keyframes sway {
+      0%, 100% { transform: translateX(-10px) rotate(-5deg); }
+      50% { transform: translateX(10px) rotate(5deg); }
+    }
+
+    /* Confetti */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      top: -20px;
+      animation: confettiFall linear infinite;
+    }
+
+    .confetti:nth-child(odd) { background: var(--color-secondary); border-radius: 50%; }
+    .confetti:nth-child(even) { background: var(--color-primary); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+    .confetti:nth-child(3n) { background: var(--color-accent); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; }
+    }
+
+    /* Sparkle Stars */
+    .sparkles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+    .sparkle { position: absolute; color: #fff; font-size: 20px; animation: sparkle 2s ease-in-out infinite; text-shadow: 0 0 10px #fff, 0 0 20px #fff; }
+    @keyframes sparkle { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
+
+    .page { padding: 20px; width: 100%; max-width: 900px; position: relative; z-index: 10; }
+
+    /* Main Card with Enhanced Glassmorphism */
+    .card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), inset 0 0 100px rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2);
+      padding: 50px 40px;
+      overflow: hidden;
+      animation: cardEntrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes cardEntrance { 0% { opacity: 0; transform: translateY(100px) scale(0.8) rotateX(20deg); } 100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0); } }
+
+    .card::before, .card::after { content: '✨'; position: absolute; font-size: 30px; animation: cornerPulse 2s ease-in-out infinite; }
+    .card::before { top: 20px; left: 20px; }
+    .card::after { bottom: 20px; right: 20px; }
+    @keyframes cornerPulse { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; } 50% { transform: scale(1.3) rotate(15deg); opacity: 1; } }
+
+    .card-inner-border { position: relative; z-index: 1; }
+
+    .top-line {
+      display: flex; justify-content: space-around; font-size: 14px; color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 15px; font-weight: 500; padding: 10px 15px; background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px; animation: fadeSlideDown 0.8s ease-out 0.3s backwards;
+    }
+    @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .main-title {
+      text-align: center; margin: 25px 0 15px; font-size: 52px; letter-spacing: 4px;
+      background: linear-gradient(135deg, #ff6b6b, #feca57, #ff9ff3, #48dbfb);
+      background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; font-weight: 900;
+      animation: titleEntrance 1s ease-out 0.5s backwards, gradientShift 4s ease-in-out infinite;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+    @keyframes titleEntrance { from { opacity: 0; transform: scale(0.5); filter: blur(10px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+    @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+    .title-emoji { display: flex; justify-content: center; gap: 20px; font-size: 40px; margin-bottom: 10px; animation: titleEntrance 1s ease-out 0.7s backwards; }
+    .title-emoji span { animation: bounce 1s ease-in-out infinite; }
+    .title-emoji span:nth-child(1) { animation-delay: 0s; }
+    .title-emoji span:nth-child(2) { animation-delay: 0.1s; }
+    .title-emoji span:nth-child(3) { animation-delay: 0.2s; }
+    .title-emoji span:nth-child(4) { animation-delay: 0.3s; }
+    .title-emoji span:nth-child(5) { animation-delay: 0.4s; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .title-divider {
+      width: 200px; height: 4px; margin: 0 auto 30px;
+      background: linear-gradient(90deg, transparent, var(--color-secondary), var(--color-primary), var(--color-secondary), transparent);
+      border-radius: 4px; animation: dividerGlow 2s ease-in-out infinite, fadeSlideDown 0.8s ease-out 0.9s backwards;
+    }
+    @keyframes dividerGlow { 0%, 100% { box-shadow: 0 0 10px var(--color-secondary); } 50% { box-shadow: 0 0 30px var(--color-primary), 0 0 60px var(--color-secondary); } }
+
+    .photo-wrap { display: flex; justify-content: center; margin-bottom: 35px; animation: photoEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 1s backwards; }
+    @keyframes photoEntrance { from { opacity: 0; transform: scale(0) rotate(-180deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+
+    .photo-circle {
+      width: 220px; height: 220px; border-radius: 50%; overflow: hidden;
+      background: linear-gradient(135deg, #ff6b6b, #feca57, #ff9ff3); padding: 6px; position: relative;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3), 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 80px rgba(255, 107, 107, 0.5);
+      animation: photoGlow 3s ease-in-out infinite, photoFloat 4s ease-in-out infinite;
+    }
+    @keyframes photoGlow { 0%, 100% { box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.3), 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 107, 107, 0.5); } 50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0.5), 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 100px rgba(254, 202, 87, 0.7); } }
+    @keyframes photoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .photo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; transition: transform 0.5s ease; }
+    .photo-circle:hover img { transform: scale(1.1); }
+
+    .floating-hearts { position: absolute; width: 100%; height: 100%; pointer-events: none; }
+    .heart { position: absolute; font-size: 20px; animation: heartFloat 3s ease-in-out infinite; }
+    .heart:nth-child(1) { top: -10px; left: 50%; animation-delay: 0s; }
+    .heart:nth-child(2) { top: 20%; right: -10px; animation-delay: 0.5s; }
+    .heart:nth-child(3) { bottom: -10px; left: 50%; animation-delay: 1s; }
+    .heart:nth-child(4) { top: 20%; left: -10px; animation-delay: 1.5s; }
+    @keyframes heartFloat { 0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 1; } 50% { transform: translate(-50%, -10px) scale(1.2); opacity: 0.7; } }
+
+    .intro-text { text-align: center; font-size: 22px; line-height: 2; color: #fff; font-weight: 500; margin-bottom: 30px; animation: fadeSlideUp 1s ease-out 1.2s backwards; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
+    @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .intro-text strong { font-weight: 900; background: linear-gradient(135deg, var(--color-secondary), #ff9f43); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.3em; animation: namePulse 2s ease-in-out infinite; }
+    @keyframes namePulse { 0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 217, 61, 0.5)); } 50% { filter: drop-shadow(0 0 25px rgba(255, 217, 61, 1)); } }
+
+    .event-row {
+      display: flex; align-items: center; justify-content: center; gap: 40px; margin: 25px 0 35px; color: #fff; font-weight: 600; padding: 25px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeSlideUp 1s ease-out 1.4s backwards; position: relative; overflow: hidden;
+    }
+    .event-row::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); animation: shimmer 3s infinite; }
+    @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+
+    .date-big { font-size: 80px; font-weight: 900; background: linear-gradient(135deg, var(--color-secondary), var(--color-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; animation: datePulse 2s ease-in-out infinite; filter: drop-shadow(0 4px 15px rgba(255, 107, 107, 0.5)); }
+    @keyframes datePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    .event-label { display: flex; flex-direction: column; gap: 6px; text-align: center; font-size: 18px; font-weight: 500; color: rgba(255, 255, 255, 0.8); }
+    .event-label span:last-child { font-size: 26px; font-weight: 700; color: #fff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+
+    .section-heading { text-align: center; font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #ff6b6b, #feca57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 25px 0 12px; letter-spacing: 2px; animation: fadeSlideUp 1s ease-out 1.6s backwards; }
+    .section-divider { width: 120px; height: 3px; margin: 0 auto 20px; background: linear-gradient(90deg, transparent, var(--color-secondary), transparent); border-radius: 2px; animation: fadeSlideUp 1s ease-out 1.7s backwards; }
+
+    .names-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px 30px; font-size: 16px; color: #fff; margin-bottom: 30px; padding: 0 10px; animation: fadeSlideUp 1s ease-out 1.8s backwards; }
+    .names-grid p { line-height: 1.6; font-weight: 500; text-align: center; padding: 12px 15px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.3s ease; cursor: default; }
+    .names-grid p:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); border-color: rgba(255, 255, 255, 0.3); }
+
+    .venue-box { margin-top: 15px; padding: 25px; border-radius: 25px; background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); font-size: 17px; line-height: 1.8; color: #fff; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); animation: fadeSlideUp 1s ease-out 2s backwards; position: relative; overflow: hidden; }
+    .venue-box::before { content: '📍'; position: absolute; top: -15px; right: -15px; font-size: 80px; opacity: 0.1; }
+    .venue-title { font-weight: 700; margin-bottom: 10px; font-size: 22px; background: linear-gradient(135deg, var(--color-secondary), #ff9f43); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .footer-row { margin-top: 25px; display: flex; justify-content: space-between; font-size: 14px; color: rgba(255, 255, 255, 0.7); padding: 15px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 15px; animation: fadeSlideUp 1s ease-out 2.2s backwards; }
+
+    .celebrate-btn { display: block; width: fit-content; margin: 30px auto 0; padding: 15px 40px; font-size: 18px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); border: none; border-radius: 50px; cursor: pointer; font-family: var(--font-fancy); box-shadow: 0 10px 30px rgba(232, 93, 117, 0.4); transition: all 0.3s ease; animation: fadeSlideUp 1s ease-out 2.4s backwards; }
+    .celebrate-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 40px rgba(232, 93, 117, 0.6); }
+    .celebrate-btn:active { transform: scale(0.95); }
+
+    @media (max-width: 900px) { .names-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) {
+      .card { padding: 30px 20px; border-radius: 30px; }
+      .main-title { font-size: 36px; }
+      .title-emoji { font-size: 30px; }
+      .photo-circle { width: 160px; height: 160px; }
+      .intro-text { font-size: 17px; }
+      .event-row { flex-direction: column; gap: 15px; padding: 20px 15px; }
+      .date-big { font-size: 60px; }
+      .event-label span:last-child { font-size: 22px; }
+      .names-grid { grid-template-columns: 1fr; gap: 10px; }
+      .section-heading { font-size: 22px; }
+      .venue-box { font-size: 15px; padding: 20px 15px; }
+      .top-line { flex-direction: column; gap: 5px; text-align: center; }
+      .footer-row { flex-direction: column; gap: 10px; text-align: center; }
+      .balloon::before { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-animation"></div>
+  <div class="balloons-container">
+    <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
+    <div class="balloon"></div><div class="balloon"></div><div class="balloon"></div><div class="balloon"></div><div class="balloon"></div>
+  </div>
+  <div class="confetti-container" id="confetti"></div>
+  <div class="sparkles" id="sparkles"></div>
+
+  <div class="page">
+    <div class="card">
+      <div class="card-inner-border">
+        <div class="top-line">
+          <span>🙏 श्री सोमजई प्रसन्न</span>
+          <span>🙏 श्री कुलस्वामी प्रसन्न</span>
+          <span>🙏 श्री रंगुमाता प्रसन्न</span>
+        </div>
+
+        <div class="title-emoji">
+          <span>🎂</span><span>🎈</span><span>🎉</span><span>🎁</span><span>🎊</span>
+        </div>
+
+        <h1 class="main-title">पहिला वाढदिवस</h1>
+        <div class="title-divider"></div>
+
+        <div class="photo-wrap">
+          <div class="photo-circle">
+            <img src="baby.jpg" alt="श्रेयांश" />
+            <div class="floating-hearts">
+              <span class="heart">💖</span><span class="heart">💖</span><span class="heart">💖</span><span class="heart">💖</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="intro-text">
+          आमचा लाडका सुपुत्र <strong>श्रेयांश</strong> च्या पहिल्या वाढदिवसानिमित्त<br />
+          आपणा सर्वांना सपरिवार हार्दिक निमंत्रण ✨
+        </p>
+
+        <div class="event-row">
+          <div class="date-big">८</div>
+          <div class="event-label">
+            <span>📅 महिना</span>
+            <span>डिसेंबर</span>
+          </div>
+          <div class="event-label">
+            <span>⏰ वेळ</span>
+            <span>संध्याकाळी ७:०० वाजता</span>
+          </div>
+        </div>
+
+        <div class="section-heading">💝 निमंत्रक 💝</div>
+        <div class="section-divider"></div>
+
+        <div class="names-grid">
+          <p>👨 अक्षय राजूभाई वांगणे (वडील)</p>
+          <p>👩 पारुल अक्षय वांगणे (आई)</p>
+          <p>👴 राजू हनुमंत वांगणे (आजोबा)</p>
+          <p>👵 राजश्री राजू वांगणे (आजी)</p>
+          <p>👴 दीपक पांडुरंग चांदलेकर (आजोबा - आईचे)</p>
+          <p>👵 वंदना दीपक चांदलेकर (आजी - आईची)</p>
+          <p>👨 आकाश राजूभाई वांगणे (काका)</p>
+          <p>👨 महेश दीपक चांदलेकर (मामा)</p>
+          <p>👩 मीना महेश चांदलेकर (मामी)</p>
+        </div>
+
+        <div class="section-heading">📍 स्थळ 📍</div>
+        <div class="section-divider"></div>
+
+        <div class="venue-box">
+          <div class="venue-title">🏠 सी-३०४, आशीर्वाद हाइट्स</div>
+          <div>रजवाडी पार्टी प्लॉट समोर</div>
+          <div>
+            स्वीट होम सोसायटी समोर, न्यू कोसाड रोड, सुरत<br />
+            ⏰ वेळ: संध्याकाळी ७:०० वाजता<br />
+            📞 मोबाईल: ९५८६५१७९२७, ९४२८३९६७१३
+          </div>
+        </div>
+        
+        <div class="footer-row">
+          <span>✉️ निमंत्रण पत्रिका म्हणून स्वीकारावे</span>
+          <span>💕 लि. संपूर्ण वांगणे परिवार</span>
+        </div>
+
+        <button class="celebrate-btn" onclick="triggerCelebration()">🎉 Celebrate! 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createConfetti() {
+      const container = document.getElementById('confetti');
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        confetti.style.width = (Math.random() * 10 + 5) + 'px';
+        confetti.style.height = (Math.random() * 10 + 5) + 'px';
+        container.appendChild(confetti);
+      }
+    }
+
+    function createSparkles() {
+      const container = document.getElementById('sparkles');
+      const sparkleChars = ['✨', '⭐', '💫', '✦', '★'];
+      for (let i = 0; i < 30; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        sparkle.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        container.appendChild(sparkle);
+      }
+    }
+
+    function triggerCelebration() {
+      const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#6c5ce7', '#00d2d3'];
+      for (let i = 0; i < 100; i++) {
+        setTimeout(() => {
+          const burst = document.createElement('div');
+          burst.style.cssText = `position: fixed; width: 15px; height: 15px; background: ${colors[Math.floor(Math.random() * colors.length)]}; border-radius: ${Math.random() > 0.5 ? '50%' : '0'}; left: 50%; top: 50%; pointer-events: none; z-index: 9999;`;
+          document.body.appendChild(burst);
+          const angle = Math.random() * Math.PI * 2;
+          const velocity = 200 + Math.random() * 300;
+          const vx = Math.cos(angle) * velocity;
+          const vy = Math.sin(angle) * velocity;
+          burst.animate([
+            { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+            { transform: `translate(calc(-50% + ${vx}px), calc(-50% + ${vy}px)) scale(0)`, opacity: 0 }
+          ], { duration: 1500, easing: 'cubic-bezier(0, 0.55, 0.45, 1)' });
+          setTimeout(() => burst.remove(), 1500);
+        }, i * 10);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createConfetti();
+      createSparkles();
+      setTimeout(triggerCelebration, 3000);
+    });
+
+    document.querySelector('.photo-circle').addEventListener('click', triggerCelebration);
+  </script>
+</body>
+</html>
+
