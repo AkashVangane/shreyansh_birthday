@@ -217,6 +217,11 @@
       text-align: center;
     }
 
+    /* Center last item if it's alone in the row (odd number of items) */
+    .names-grid p:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
+
     .venue-box {
       margin-top: 10px;
       padding: 20px;
@@ -438,6 +443,7 @@
           <div>
             સ્વીટ હોમ સોસાયટી સામે, ન્યુ કોસાડ રોડ, સુરત<br />
             સમય: સાંજે ૭:૦૦ વાગ્યાથી <br />
+            ભોજન સમય: સાંજે ૮ થી ૧૦<br />
             મોબાઇલ: ૯૫૮૬૫૧૭૯૨૭, ૯૪૨૮૩૯૬૭૧૩
           </div>
         </div>
